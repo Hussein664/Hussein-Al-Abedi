@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hussein's Store</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=San+Francisco&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'San Francisco', sans-serif;
+            background-image: url('W1.jpg'); /* Replace with your background image */
+            background-size: cover;
+            background-position: center;
+            color: #000000;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            color: #ffffff;
+            text-shadow: 0 0 5px #666666, 0 0 10px #999999, 0 0 15px #cccccc;
+        }
+
+        .content {
+            padding: 40px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .content h2 {
+            margin-top: 0;
+            font-size: 2.5em;
+            color: #000000;
+            text-shadow: 0 0 5px #666666, 0 0 10px #999999, 0 0 15px #cccccc;
+        }
+
+        .content p {
+            font-size: 2em;
+            color: #000000;
+            padding: 20px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #6600cc;
+            color: #ffffff;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            margin: 10px;
+        }
+
+        .buttons button:hover {
+            background: #9933ff;
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .sub-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .sub-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background: #6600cc;
+            color: #ffffff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            margin: 10px;
+        }
+
+        .sub-buttons button:hover {
+            background: #9933ff;
+            transform: scale(1.05);
+        }
+
+        .product-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .product-options .option {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background: #6600cc;
+            color: #ffffff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            margin: 10px;
+        }
+
+        .product-options .option:hover {
+            background: #9933ff;
+            transform: scale(1.05);
+        }
+
+        .price-list {
+            margin-top: 20px;
+        }
+
+        .price-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .price-list li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>-Welcome-</h1>
+    </header>
+    <div id="home" class="content">
+        <h2>Welcome to Hussein's Store</h2>
+        <p>Software and hardware services and all your tech needs.</p>
+        <div class="buttons">
+            <button id="explore-button" onclick="showExploreButtons()">Explore</button>
+            <button id="home-button" class="hidden" onclick="showPage('home')">Home</button>
+            <button id="about-button" class="hidden" onclick="showPage('about')">About</button>
+            <button id="products-button" class="hidden" onclick="showPage('products')">Products</button>
+        </div>
+    </div>
+    <div id="about" class="content hidden">
+        <h2>About Us</h2>
+        <p>Telegram: husseina028</p>
+        <p>Email: <span onclick="copyToClipboard('abedihusseina028@gmail.com')">abedihusseina028@gmail.com</span></p>
+        <div class="buttons">
+            <button onclick="showPage('home')">Back to Home</button>
+        </div>
+    </div>
+    <div id="products" class="content hidden">
+        <h2>Products</h2>
+        <div class="buttons">
+            <button onclick="showIOSPage()">iOS</button>
+            <button onclick="showPCPage()">PC</button>
+        </div>
+        <div class="buttons">
+            <button onclick="showPage('home')">Back to Home</button>
+        </div>
+    </div>
+    <div id="ios-options" class="content hidden">
+        <h2>iOS Products</h2>
+        <div class="sub-buttons">
+            <button onclick="showProductOptions('iphone')">iPhone</button>
+            <button onclick="showProductOptions('ipad')">iPad</button>
+        </div>
+        <div class="buttons">
+            <button onclick="showPage('products')">Back to Products</button>
+        </div>
+    </div>
+    <div id="pc-options" class="content hidden">
+        <h2>PC Products</h2>
+        <div class="sub-buttons">
+            <button onclick="showProductOptions('desktop')">Desktop</button>
+            <button onclick="showProductOptions('laptop')">Laptop</button>
+        </div>
+        <div class="buttons">
+            <button onclick="showPage('products')">Back to Products</button>
+        </div>
+    </div>
+    <div id="product-options" class="content hidden">
+        <h2>Product Options</h2>
+        <div class="product-options" id="product-options-content">
+            <!-- Product options dynamically populated here -->
+        </div>
+        <div class="buttons">
+            <button onclick="showPreviousPage()">Back</button>
+        </div>
+    </div>
+    <div id="software-options" class="content hidden">
+        <h2>Software Installation Options</h2>
+        <div class="product-options">
+            <button onclick="purchaseSoftware('photoshop')">Purchase Photoshop</button>
+            <button onclick="purchaseSoftware('windows')">Windows Activation Key</button>
+            <button onclick="purchaseSoftware('autocad')">AutoCAD</button>
+        </div>
+        <div class="buttons">
+            <button onclick="showPreviousPage()">Back to Products</button>
+        </div>
+    </div>
+    <script>
+        let previousPageId = 'home';
+
+        function showExploreButtons() {
+            document.getElementById('explore-button').classList.add('hidden');
+            document.getElementById('home-button').classList.remove('hidden');
+            document.getElementById('about-button').classList.remove('hidden');
+            document.getElementById('products-button').classList.remove('hidden');
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.content');
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Show selected page
+            const pageToShow = document.getElementById(pageId);
+            if (pageToShow) {
+                pageToShow.classList.remove('hidden');
+            }
+        }
+
+        function showSubButtons() {
+            previousPageId = 'products';
+            showPage('products');
+        }
+
+        function showIOSPage() {
+            previousPageId = 'products';
+            showPage('ios-options');
+        }
+
+        function showPCPage() {
+            previousPageId = 'products';
+            showPage('pc-options');
+        }
+
+        function showProductOptions(productType) {
+            // Replace with dynamic content based on productType
+            const productOptionsContent = document.getElementById('product-options-content');
+            if (productType === 'iphone') {
+                productOptionsContent.innerHTML = `
+                    <div class="product-options">
+                        <button onclick="showProductOptions('iphone')">Purchase iDevice</button>
+                        <button onclick="showProductOptions('iphone')">iDevice Wipe</button>
+                        <button onclick="showProductOptions('iphone')">iCloud Wipe</button>
+                    </div>
+                `;
+                previousPageId = 'ios-options';
+            } else if (productType === 'ipad') {
+                productOptionsContent.innerHTML = `
+                    <div class="product-options">
+                        <button onclick="showProductOptions('ipad')">Purchase iDevice</button>
+                        <button onclick="showProductOptions('ipad')">iDevice Wipe</button>
+                        <button onclick="showProductOptions('ipad')">iCloud Wipe</button>
+                    </div>
+                `;
+                previousPageId = 'ios-options';
+            } else if (productType === 'desktop' || productType === 'laptop') {
+                productOptionsContent.innerHTML = `
+                    <div class="product-options">
+                        <button onclick="showProductOptions('pc')">Software Installation</button>
+                        <button onclick="showProductOptions('pc')">Purchase device</button>
+                        <button onclick="showProductOptions('pc')">Games</button>
+                    </div>
+                `;
+                previousPageId = 'pc-options';
+            }
+            showPage('product-options');
+        }
+
+        function purchaseSoftware(softwareType) {
+            // Logic to handle software purchase goes here
+            alert('You selected: ' + softwareType);
+            // Optionally, you can redirect or perform further actions
+        }
+
+        function showPreviousPage() {
+            showPage(previousPageId);
+        }
+    </script>
+</body>
+</html>
